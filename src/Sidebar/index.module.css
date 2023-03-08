@@ -1,0 +1,6 @@
+.sidebar {
+	width: 260px;
+	height: calc(100vh - 100px);
+	background-color: black;
+	color: white;
+}
