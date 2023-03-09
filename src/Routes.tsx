@@ -5,6 +5,7 @@ import Header from "./Header";
 import Home from "./Home";
 import Sidebar from "./Sidebar";
 import styled from "styled-components";
+import Mypage from "./Mypage";
 
 const Container = styled.div`
 	position: absolute;
@@ -22,6 +23,7 @@ const Routes = () => {
 			<Container>
 				<ReactRouterRoutes>
 					<Route path="/apis" element={<Api />} />
+					<Route path="/mypage" element={<Mypage />} />
 					<Route path="/" element={<Home />} />
 				</ReactRouterRoutes>
 			</Container>
