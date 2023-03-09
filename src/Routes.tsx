@@ -4,19 +4,27 @@ import Api from "./Api";
 import Header from "./Header";
 import Home from "./Home";
 import Sidebar from "./Sidebar";
-import style from "./Routes.module.css";
+import styled from "styled-components";
+
+const Container = styled.div`
+	position: absolute;
+	top: 100px;
+	left: 260px;
+	width: calc(100vw - 260px);
+	height: calc(100vh - 100px);
+`;
 
 const Routes = () => {
 	return (
 		<>
 			<Header />
 			<Sidebar />
-			<div className={style.content}>
+			<Container>
 				<ReactRouterRoutes>
 					<Route path="/apis" element={<Api />} />
 					<Route path="/" element={<Home />} />
 				</ReactRouterRoutes>
-			</div>
+			</Container>
 		</>
 	);
 };

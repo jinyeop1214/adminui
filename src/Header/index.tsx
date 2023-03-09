@@ -1,14 +1,21 @@
 import React from "react";
 import Logo from "./Logo";
 import UserIcon from "./UserIcon";
-import style from "./index.module.css";
+import styled from "styled-components";
+
+const Container = styled.div`
+	position: relative;
+	height: 100px;
+	background-color: lightgray;
+	color: white;
+`;
 
 const Header = () => {
 	return (
-		<div className={style.header}>
+		<Container>
 			<Logo />
 			<UserIcon />
-		</div>
+		</Container>
 	);
 };
 

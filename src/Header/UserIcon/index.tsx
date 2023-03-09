@@ -1,8 +1,15 @@
 import React from "react";
-import style from "./index.module.css";
+import styled from "styled-components";
+
+const Container = styled.div`
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 20px;
+`;
 
 const UserIcon = () => {
-	return <div className={style.icon}>User Profile</div>;
+	return <Container>User Profile</Container>;
 };
 
 export default UserIcon;
