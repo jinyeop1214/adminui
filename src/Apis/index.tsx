@@ -4,6 +4,7 @@ import ContentTitle from "../Common/ContentTitle";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import AddButton from "./AddButton";
+import { fetchApis } from "../FetchFunction/fetchApis";
 
 const Table = styled.table`
 	border-collapse: collapse;
@@ -51,37 +52,24 @@ const Apis = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		const fetchApis = async () => {
-			if (process.env.REACT_APP_TYK_KEY) {
-				const response = await fetch(`/api/apis`, {
-					// cache: "no-cache",
-					// method: "GET",
-					headers: {
-						Authorization: process.env.REACT_APP_TYK_KEY,
-					},
-				});
-				const data = await response.json();
-				setApis(data.apis);
-			}
+		const fetchApisWrapper = async () => {
+			const data = await fetchApis();
+			setApis(data);
 		};
 
-		fetchApis();
+		fetchApisWrapper();
 	}, []);
 
 	const handleNavAPIDetailPage: MouseEventHandler<
 		HTMLTableDataCellElement
-	> = (e) => {
-		console.log(e);
-		console.log(e.currentTarget.dataset.id);
-		navigate(`/api/${e.currentTarget.dataset.id}`);
-	};
+	> = (e) => navigate(`/api/${e.currentTarget.dataset.id}`);
 
 	const typeDiscriminator = (api: any) => {
 		if (
 			api.api_definition.graphql.enabled === null ||
 			api.api_definition.graphql.enabled === undefined
 		) {
-			console.log("isHTTP UNDEFINED!");
+			console.log("API Type에 대한 정보가 없습니다.");
 			return "HTTP";
 		}
 		if (api.api_definition.graphql.enabled === false) return "HTTP";

@@ -7,7 +7,7 @@ interface props {
 const Title = ({ path }: props) => {
 	return (
 		<div>
-			Api Url: http://localhost:8080
+			API URL: http://localhost:8080
 			{path}
 		</div>
 	);
