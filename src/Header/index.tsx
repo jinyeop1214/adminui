@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
 	position: relative;
-	height: 100px;
+	height: 70px;
 	background-color: lightgray;
 	color: white;
 `;

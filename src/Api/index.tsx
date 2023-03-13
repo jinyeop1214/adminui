@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import ContentTitle from "../Common/ContentTitle";
 import Detail from "./Detail";
 import Title from "./Title";
+import ContentHeaderContainer from "../Common/ContentHeaderContainer";
 
 const Api = () => {
 	const [api, setApi] = useState<any>(undefined);
@@ -27,7 +28,9 @@ const Api = () => {
 	return (
 		api && (
 			<>
-				<ContentTitle title={api.api_definition.name} />
+				<ContentHeaderContainer>
+					<ContentTitle title={api.api_definition.name} />
+				</ContentHeaderContainer>
 				<Title path={api.api_definition.proxy.listen_path} />
 				<br />
 				<Detail api={api} />

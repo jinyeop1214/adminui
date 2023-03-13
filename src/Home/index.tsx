@@ -1,11 +1,12 @@
 import React from "react";
 import ContentTitle from "../Common/ContentTitle";
+import ContentHeaderContainer from "../Common/ContentHeaderContainer";
 
 const Home = () => {
 	return (
-		<div>
+		<ContentHeaderContainer>
 			<ContentTitle title="Home" />
-		</div>
+		</ContentHeaderContainer>
 	);
 };
 

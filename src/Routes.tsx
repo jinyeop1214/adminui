@@ -7,10 +7,11 @@ import Sidebar from "./Sidebar";
 import styled from "styled-components";
 import Mypage from "./Mypage";
 import Api from "./Api";
+import AddApi from "./AddApi";
 
 const Container = styled.div`
 	position: absolute;
-	top: 100px;
+	top: 70px;
 	left: 260px;
 	width: calc(100vw - 260px);
 	height: calc(100vh - 100px);
@@ -23,6 +24,7 @@ const Routes = () => {
 			<Sidebar />
 			<Container>
 				<ReactRouterRoutes>
+					<Route path="/api/new" element={<AddApi />} />
 					<Route path="/api/:apiId" element={<Api />} />
 					<Route path="/apis" element={<Apis />} />
 					<Route path="/mypage" element={<Mypage />} />

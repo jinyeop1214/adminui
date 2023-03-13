@@ -3,6 +3,7 @@ import React, { MouseEventHandler, useEffect, useState } from "react";
 import ContentTitle from "../Common/ContentTitle";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import AddButton from "./AddButton";
 
 const Table = styled.table`
 	border-collapse: collapse;
@@ -39,6 +40,10 @@ const TDButton = styled.td`
 	border-right: 1px solid #dee2e6;
 	font-weight: bold;
 	cursor: pointer;
+`;
+const Container = styled.div`
+	position: relative;
+	height: 70px;
 `;
 
 const Apis = () => {
@@ -90,7 +95,10 @@ const Apis = () => {
 
 	return (
 		<div>
-			<ContentTitle title="APIs" />
+			<Container>
+				<ContentTitle title="APIs" />
+				<AddButton />
+			</Container>
 			<Table>
 				<thead>
 					<tr>
