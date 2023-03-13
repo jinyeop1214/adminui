@@ -8,6 +8,7 @@ import styled from "styled-components";
 import Mypage from "./Mypage";
 import Api from "./Api";
 import AddApi from "./AddApi";
+import ModifyApi from "./ModifyApi";
 
 const Container = styled.div`
 	position: absolute;
@@ -25,6 +26,7 @@ const Routes = () => {
 			<Container>
 				<ReactRouterRoutes>
 					<Route path="/api/new" element={<AddApi />} />
+					<Route path="/api/:apiId/modify" element={<ModifyApi />} />
 					<Route path="/api/:apiId" element={<Api />} />
 					<Route path="/apis" element={<Apis />} />
 					<Route path="/mypage" element={<Mypage />} />

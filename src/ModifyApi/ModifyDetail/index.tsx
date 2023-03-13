@@ -1,11 +1,10 @@
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import ContentHeaderContainer from "../Common/ContentHeaderContainer";
-import ContentTitle from "../Common/ContentTitle";
-import styled from "styled-components";
-import { addNewApi } from "../FetchFunction/addNewApi";
 import { useNavigate } from "react-router-dom";
-import { Inputs } from "../interfaces";
+import styled from "styled-components";
+import { authTypeChecker } from "../../Common/CommonFunction/authTypeChecker";
+import { modifyApi } from "../../FetchFunction/modifyApi";
+import { Inputs } from "../../interfaces";
 
 const Input = styled.input`
 	margin: 10px;
@@ -13,26 +12,35 @@ const Input = styled.input`
 	display: block;
 `;
 
-const AddApi = () => {
+interface props {
+	api: any;
+}
+
+const ModifyDetail = ({ api }: props) => {
 	const navigate = useNavigate();
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<Inputs>();
+	} = useForm<Inputs>({
+		defaultValues: {
+			name: api.api_definition.name,
+			target_url: api.api_definition.proxy.target_url,
+			path: api.api_definition.proxy.listen_path,
+		},
+	});
 
 	const onSubmit: SubmitHandler<Inputs> = async (data) => {
-		const response = await addNewApi(data);
+		const response = await modifyApi(data, api.api_definition.api_id);
 		if (response.Status !== "OK")
-			throw new Error("새 API 생성에 실패하였습니다.");
-		navigate(`/api/${response.ID}`);
+			throw new Error("API 수정에 실패하였습니다.");
+		console.log(response);
+		navigate(`/api/${api.api_definition.api_id}`);
 	};
 
 	return (
-		<>
-			<ContentHeaderContainer>
-				<ContentTitle title="새 API 생성" />
-			</ContentHeaderContainer>
+		<div>
+			<h3>Details</h3>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<Input
 					type="text"
@@ -40,6 +48,7 @@ const AddApi = () => {
 					placeholder="API명"
 				/>
 				{errors.name && <div>빈칸을 채워주세요</div>}
+				{errors.target_url && <div>빈칸을 채워주세요</div>}
 				<Input
 					type="text"
 					{...register("path", { required: true })}
@@ -51,11 +60,11 @@ const AddApi = () => {
 					{...register("target_url", { required: true })}
 					placeholder="Upstream 서버 URL"
 				/>
-				{errors.target_url && <div>빈칸을 채워주세요</div>}
+				<div>인증 타입: {authTypeChecker(api)}</div>
 				<Input type="submit" />
 			</form>
-		</>
+		</div>
 	);
 };
 
-export default AddApi;
+export default ModifyDetail;

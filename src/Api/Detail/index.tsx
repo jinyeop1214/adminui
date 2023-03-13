@@ -1,17 +1,11 @@
 import React from "react";
+import { authTypeChecker } from "../../Common/CommonFunction/authTypeChecker";
 
 interface props {
 	api: any;
 }
 
 const Detail = ({ api }: props) => {
-	const authTypeChecker = (api: any) => {
-		if (api.api_definition.use_keyless) return "None";
-		if (api.api_definition.use_standard_auth) return "Authentication Token";
-		if (api.api_definition.use_basic_auth) return "Basic Authentication";
-		else return "Other";
-	};
-
 	return (
 		<div>
 			<h3>Details</h3>

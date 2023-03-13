@@ -1,18 +1,7 @@
-type ApiInfo = {
-	name: string;
-	target_url: string;
-	path: string;
-};
+import { pathFormatter } from "../Common/CommonFunction/pathFormatter";
+import { ApiInfo } from "../interfaces";
 
-const pathFormatter = (path: string) => {
-	//여기말고 인풋 칸에서 경고하기 빈칸, /, // //..// 등등
-	if (path[0] !== "/" && path[path.length - 1] !== "/") return `/${path}/`;
-	if (path[0] === "/" && path[path.length - 1] !== "/") return `${path}/`;
-	if (path[0] !== "/" && path[path.length - 1] === "/") return `/${path}`;
-	if (path[0] === "/" && path[path.length - 1] === "/") return `${path}`;
-};
-
-const addNewApiBodyFormat = (data: ApiInfo) => {
+const modifyApiBodyFormat = (data: ApiInfo) => {
 	const path = pathFormatter(data.path);
 	return {
 		api_definition: {
@@ -79,19 +68,19 @@ const addNewApiBodyFormat = (data: ApiInfo) => {
 	};
 };
 
-export const postNewApi = async (data: ApiInfo) => {
+export const modifyApi = async (data: ApiInfo, id: string) => {
 	if (
 		process.env.REACT_APP_TYK_KEY === undefined ||
 		process.env.REACT_APP_TYK_KEY === null
 	)
 		throw new Error("Tyk Key가 없습니다.");
-	const response = await fetch(`/api/apis`, {
-		method: "POST",
+	const response = await fetch(`/api/apis/${id}`, {
+		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
 			Authorization: process.env.REACT_APP_TYK_KEY,
 		},
-		body: JSON.stringify(addNewApiBodyFormat(data)),
+		body: JSON.stringify(modifyApiBodyFormat(data)),
 	});
 	return await response.json();
 };

@@ -17,7 +17,7 @@ const AddButton = () => {
 		navigate(`/api/new`);
 	};
 
-	return <Button onClick={handleNavAddApiPage}>Api 생성</Button>;
+	return <Button onClick={handleNavAddApiPage}>새 Api 생성하기</Button>;
 };
 
 export default AddButton;

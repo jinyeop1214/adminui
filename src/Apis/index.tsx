@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import AddButton from "./AddButton";
 import { fetchApis } from "../FetchFunction/fetchApis";
+import ContentHeaderContainer from "../Common/ContentHeaderContainer";
 
 const Table = styled.table`
 	border-collapse: collapse;
@@ -41,10 +42,6 @@ const TDButton = styled.td`
 	border-right: 1px solid #dee2e6;
 	font-weight: bold;
 	cursor: pointer;
-`;
-const Container = styled.div`
-	position: relative;
-	height: 70px;
 `;
 
 const Apis = () => {
@@ -83,10 +80,10 @@ const Apis = () => {
 
 	return (
 		<div>
-			<Container>
+			<ContentHeaderContainer>
 				<ContentTitle title="APIs" />
 				<AddButton />
-			</Container>
+			</ContentHeaderContainer>
 			<Table>
 				<thead>
 					<tr>
