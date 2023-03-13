@@ -1,11 +1,12 @@
 import React from "react";
 import { Route, Routes as ReactRouterRoutes } from "react-router-dom";
-import Api from "./Api";
+import Apis from "./Apis";
 import Header from "./Header";
 import Home from "./Home";
 import Sidebar from "./Sidebar";
 import styled from "styled-components";
 import Mypage from "./Mypage";
+import Api from "./Api";
 
 const Container = styled.div`
 	position: absolute;
@@ -22,7 +23,8 @@ const Routes = () => {
 			<Sidebar />
 			<Container>
 				<ReactRouterRoutes>
-					<Route path="/apis" element={<Api />} />
+					<Route path="/api/:apiId" element={<Api />} />
+					<Route path="/apis" element={<Apis />} />
 					<Route path="/mypage" element={<Mypage />} />
 					<Route path="/" element={<Home />} />
 				</ReactRouterRoutes>
