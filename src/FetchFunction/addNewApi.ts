@@ -1,4 +1,5 @@
 import { pathFormatter } from "../Common/CommonFunction/pathFormatter";
+import { tykKeyChecker } from "../Common/CommonFunction/tykKeyChecker";
 import { ApiInfo } from "../interfaces";
 
 const addNewApiBodyFormat = (data: ApiInfo) => {
@@ -69,16 +70,12 @@ const addNewApiBodyFormat = (data: ApiInfo) => {
 };
 
 export const addNewApi = async (data: ApiInfo) => {
-	if (
-		process.env.REACT_APP_TYK_KEY === undefined ||
-		process.env.REACT_APP_TYK_KEY === null
-	)
-		throw new Error("Tyk Key가 없습니다.");
+	const tkyKey = tykKeyChecker();
 	const response = await fetch(`/api/apis`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
-			Authorization: process.env.REACT_APP_TYK_KEY,
+			Authorization: tkyKey,
 		},
 		body: JSON.stringify(addNewApiBodyFormat(data)),
 	});

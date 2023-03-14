@@ -1,12 +1,10 @@
+import { tykKeyChecker } from "../Common/CommonFunction/tykKeyChecker";
+
 export const fetchApi = async (id: string) => {
-	if (
-		process.env.REACT_APP_TYK_KEY === undefined ||
-		process.env.REACT_APP_TYK_KEY === null
-	)
-		throw new Error("Tyk Key가 없습니다.");
+	const tkyKey = tykKeyChecker();
 	const response = await fetch(`/api/apis/${id}`, {
 		headers: {
-			Authorization: process.env.REACT_APP_TYK_KEY,
+			Authorization: tkyKey,
 		},
 	});
 	const data = await response.json();

@@ -10,7 +10,7 @@ const Button = styled.div`
 	position: absolute;
 	top: 0;
 	right: 0;
-	padding: 20px;
+	margin: 20px;
 	cursor: pointer;
 	font-weight: bold;
 `;
@@ -24,7 +24,7 @@ const ModifyButton = ({ submit }: props) => {
 
 	return (
 		<Button onClick={handleNavModifyApiPage}>
-			{submit ? "수정" : "Api 수정하기"}
+			{submit ? "완료" : "수정"}
 		</Button>
 	);
 };

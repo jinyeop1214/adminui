@@ -6,7 +6,7 @@ const Button = styled.div`
 	position: absolute;
 	top: 0;
 	right: 0;
-	padding: 20px;
+	margin: 20px;
 	cursor: pointer;
 	font-weight: bold;
 `;
@@ -17,7 +17,7 @@ const AddButton = () => {
 		navigate(`/api/new`);
 	};
 
-	return <Button onClick={handleNavAddApiPage}>새 Api 생성하기</Button>;
+	return <Button onClick={handleNavAddApiPage}>새 Api 생성</Button>;
 };
 
 export default AddButton;

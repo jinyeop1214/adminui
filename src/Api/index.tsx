@@ -7,6 +7,7 @@ import ContentHeaderContainer from "../Common/ContentHeaderContainer";
 import { fetchApi } from "../FetchFunction/fetchApi";
 import styled from "styled-components";
 import ModifyButton from "./ModifyButton";
+import DeleteButton from "./DeleteButton";
 
 const Container = styled.div`
 	padding: 20px;
@@ -31,6 +32,7 @@ const Api = () => {
 				<ContentHeaderContainer>
 					<ContentTitle title={api.api_definition.name} />
 					<ModifyButton submit={false} />
+					<DeleteButton />
 				</ContentHeaderContainer>
 				<Container>
 					<Title path={api.api_definition.proxy.listen_path} />
