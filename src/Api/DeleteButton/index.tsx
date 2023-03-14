@@ -13,7 +13,7 @@ const Button = styled.div`
 `;
 
 const DeleteButton = () => {
-	const params = useParams();
+	const params = useParams<{ apiId: string }>();
 	const navigate = useNavigate();
 
 	const handleDeleteApi = async () => {

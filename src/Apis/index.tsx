@@ -2,10 +2,11 @@ import dayjs from "dayjs";
 import React, { MouseEventHandler, useEffect, useState } from "react";
 import ContentTitle from "../Common/ContentTitle";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AddButton from "./AddButton";
 import { fetchApis } from "../FetchFunction/fetchApis";
 import ContentHeaderContainer from "../Common/ContentHeaderContainer";
+import PageNav from "./PageNav";
 
 const Table = styled.table`
 	border-collapse: collapse;
@@ -45,17 +46,24 @@ const TDButton = styled.td`
 `;
 
 const Apis = () => {
+	const params = useParams<{ page?: string }>();
 	const [apis, setApis] = useState<any>([]);
+	const [totalPages, setTotalPages] = useState<number>(0);
 	const navigate = useNavigate();
 
 	useEffect(() => {
+		console.log(params.page);
 		const fetchApisWrapper = async () => {
-			const data = await fetchApis();
-			setApis(data);
+			const data = await fetchApis(
+				params.page ? parseInt(params.page) : 1
+			);
+			console.log(data);
+			setApis(data.apis);
+			setTotalPages(data.pages);
 		};
 
 		fetchApisWrapper();
-	}, []);
+	}, [params]);
 
 	const handleNavAPIDetailPage: MouseEventHandler<
 		HTMLTableDataCellElement
@@ -111,6 +119,10 @@ const Apis = () => {
 					})}
 				</tbody>
 			</Table>
+			<PageNav
+				total={totalPages}
+				current={params.page ? parseInt(params.page) : 1}
+			/>
 		</div>
 	);
 };

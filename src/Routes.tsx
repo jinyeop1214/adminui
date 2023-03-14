@@ -28,6 +28,7 @@ const Routes = () => {
 					<Route path="/api/new" element={<AddApi />} />
 					<Route path="/api/:apiId/modify" element={<ModifyApi />} />
 					<Route path="/api/:apiId" element={<Api />} />
+					<Route path="/apis/:page" element={<Apis />} />
 					<Route path="/apis" element={<Apis />} />
 					<Route path="/mypage" element={<Mypage />} />
 					<Route path="/" element={<Home />} />
